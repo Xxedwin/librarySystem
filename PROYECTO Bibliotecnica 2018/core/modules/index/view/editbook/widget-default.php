@@ -35,6 +35,18 @@ $editorials = EditorialData::getAll();
     </div>
   </div>
   <div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Ubicacion y Estante</label>
+    <div class="col-lg-10">
+    <textarea class="form-control" name="locationShelf" placeholder="Ubicacion y Estante"><?php echo $book->locationShelf; ?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Palabras Claves</label>
+    <div class="col-lg-10">
+    <textarea class="form-control" name="keywords" placeholder="Palabras Claves"><?php echo $book->keywords; ?></textarea>
+    </div>
+  </div>
+  <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Num. Paginas</label>
     <div class="col-lg-4">
       <input type="text" name="n_pag" class="form-control" id="inputEmail1" value="<?php echo $book->n_pag; ?>" placeholder="Num. Paginas">

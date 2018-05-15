@@ -16,8 +16,8 @@ class BookData {
 	public function getAuthor(){ return $this->author_id!=null? AuthorData::getById($this->author_id) : null ; }
 
 	public function add(){
-		$sql = "insert into book (isbn,title,subtitle,institucion,description,n_pag,year,category_id,editorial_id,author_id) ";
-		$sql .= "value (\"$this->isbn\",\"$this->title\",\"$this->subtitle\",\"$this->institucion\",\"$this->description\",\"$this->n_pag\",\"$this->year\",$this->category_id,$this->editorial_id,$this->author_id)";
+		$sql = "insert into book (isbn,title,subtitle,institucion,description,locationShelf,keywords,n_pag,year,category_id,editorial_id,author_id) ";
+		$sql .= "value (\"$this->isbn\",\"$this->title\",\"$this->subtitle\",\"$this->institucion\",\"$this->description\",\"$this->locationShelf\",\"$this->keywords\",\"$this->n_pag\",\"$this->year\",$this->category_id,$this->editorial_id,$this->author_id)";
 		return Executor::doit($sql);
 	}
 
@@ -32,7 +32,7 @@ class BookData {
 
 // partiendo de que ya tenemos creado un objecto BookData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set title=\"$this->title\",subtitle=\"$this->subtitle\",isbn=\"$this->isbn\",description=\"$this->description\",n_pag=\"$this->n_pag\",year=\"$this->year\",category_id=$this->category_id,editorial_id=$this->editorial_id,author_id=$this->author_id where id=$this->id";
+		$sql = "update ".self::$tablename." set title=\"$this->title\",subtitle=\"$this->subtitle\",isbn=\"$this->isbn\",description=\"$this->description\",locationShelf=\"$this->locationShelf\",keywords=\"$this->keywords\",n_pag=\"$this->n_pag\",year=\"$this->year\",category_id=$this->category_id,editorial_id=$this->editorial_id,author_id=$this->author_id where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -65,7 +65,10 @@ class BookData {
 		//$sql = "select * from ".self::$tablename." where isbn like '%$q%' or title like '$q%'";
 		if (strlen($q)==1) {
 			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '$q%'";
-		}else{
+		}elseif ($q=="") {
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id";
+		}
+		else{
 			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '%$q%'";
 		}
 

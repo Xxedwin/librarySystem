@@ -1,5 +1,5 @@
 
-<?php if(isset($_GET["product"]) && $_GET["product"]!=""):?>
+<?php if(isset($_GET["product"]) || $_GET["product"]==""):?>
 	<?php
 $products = BookData::getLike($_GET["product"]);
 if(count($products)>0){

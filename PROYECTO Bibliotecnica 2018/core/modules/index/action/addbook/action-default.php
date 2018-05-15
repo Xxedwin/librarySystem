@@ -7,6 +7,8 @@ $r->title = $_POST["title"];
 $r->subtitle = $_POST["subtitle"];
 $r->institucion = $_POST["institucion"];
 $r->description = $_POST["description"];
+$r->locationShelf = $_POST["locationShelf"];
+$r->keywords = $_POST["keywords"];
 $r->n_pag = $_POST["n_pag"];
 $r->year = $_POST["year"];
 $r->category_id = $_POST["category_id"]!="" ? $_POST["category_id"] : "NULL";

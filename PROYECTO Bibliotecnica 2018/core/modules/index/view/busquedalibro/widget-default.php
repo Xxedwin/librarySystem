@@ -9,7 +9,7 @@
 		<div class="row">
 			<div class="col-md-6">
 				<input type="hidden" name="view" value="sell">
-				<input type="text" id="product_code" name="product" class="form-control">
+				<input type="text" id="product_code" name="product" placeholder="Ver todos los libros" class="form-control">
 			</div>
 			<div class="col-md-3">
 			<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-search"></i> Buscar</button>
