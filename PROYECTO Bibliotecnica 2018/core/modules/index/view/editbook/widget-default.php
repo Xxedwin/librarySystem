@@ -37,13 +37,13 @@ $editorials = EditorialData::getAll();
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Ubicacion y Estante</label>
     <div class="col-lg-10">
-    <textarea class="form-control" name="locationShelf" placeholder="Ubicacion y Estante"><?php echo $book->locationShelf; ?></textarea>
+    <input type="text" name="locationShelf" class="form-control" value="<?php echo $book->locationShelf; ?>" id="inputEmail1" placeholder="Ubicacion y Estante">
     </div>
   </div>
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Palabras Claves</label>
     <div class="col-lg-10">
-    <textarea class="form-control" name="keywords" placeholder="Palabras Claves"><?php echo $book->keywords; ?></textarea>
+    <input type="text" name="keywords" class="form-control" data-role="tagsinput" value="<?php echo $book->keywords; ?>" id="inputEmail1" placeholder="Palabras Claves">
     </div>
   </div>
   <div class="form-group">

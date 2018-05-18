@@ -9,7 +9,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="res/bootstrap3/css/bootstrap.css" rel="stylesheet">
-
+    <link href="res/bootstrap-tagsinput.css" rel="stylesheet"/>
     <!-- Add custom CSS here -->
     <link href="res/select2/select2.css" rel="stylesheet">
     <link href="res/select2/select2-bootstrap.css" rel="stylesheet">
@@ -20,8 +20,10 @@
 <?php if(isset($_GET["view"]) && $_GET["view"]=="home"):?>
 <link href='res/fullcalendar.min.css' rel='stylesheet' />
 <link href='res/fullcalendar.print.css' rel='stylesheet' media='print' />
+
 <script src='res/js/moment.min.js'></script>
 <script src='res/fullcalendar.min.js'></script>
+
 <?php endif; ?>
 <script src='res/select2/select2.min.js'></script>
   </head>
@@ -149,6 +151,7 @@ if(Session::getUID()!=""){
     <!-- JavaScript -->
 
 <script src="res/bootstrap3/js/bootstrap.min.js"></script>
+<script src="res/bootstrap-tagsinput.js"></script>
 <ul>
   </body>
 </html>
