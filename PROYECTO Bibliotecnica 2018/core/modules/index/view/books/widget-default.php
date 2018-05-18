@@ -20,7 +20,7 @@ $books = BookData::getAll();
 			<th>Institucion</th>
 			<th>Ejemplares</th>
 			<th>Disponibles</th>
-			<th>Categoria</th>
+			<th>Tema</th>
 			<th></th>
 			</thead>
 			<?php

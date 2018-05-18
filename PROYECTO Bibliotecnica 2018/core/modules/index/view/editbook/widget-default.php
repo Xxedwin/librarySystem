@@ -61,7 +61,7 @@ $editorials = EditorialData::getAll();
 
 
   <div class="form-group">
-    <label for="inputEmail1" class="col-lg-2 control-label">Categoria</label>
+    <label for="inputEmail1" class="col-lg-2 control-label">Tema</label>
     <div class="col-lg-10">
 <select name="category_id" class="form-control">
 <option value=""> Seleccionar </option>

@@ -75,7 +75,7 @@ if(Session::getUID()!=""):
           <li><a href="index.php?view=rents"><i class="fa fa-th-large"></i> Prestamos Institucionales</a></li>
           <li><a href="index.php?view=books"><i class="fa fa-book"></i> Libros</a></li>
           <li><a href="index.php?view=clients"><i class="fa fa-male"></i> Clientes Institucionales</a></li>
-          <li><a href="index.php?view=categories"><i class="fa fa-th-list"></i> Categorias</a></li>
+          <li><a href="index.php?view=categories"><i class="fa fa-th-list"></i> Temas</a></li>
           <li><a href="index.php?view=editorials"><i class="fa fa-th-list"></i> Editoriales</a></li>
           <li><a href="index.php?view=authors"><i class="fa fa-th-list"></i> Autores</a></li>
           <?php if($u->is_admin):?>

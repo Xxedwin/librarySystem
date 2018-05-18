@@ -70,7 +70,7 @@ class BookData {
 			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id";
 		}
 		else{
-			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '%$q%' or keywords like '%$q%'";
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '%$q%' or keywords like '%$q%' or category_id like '%$q%'";
 		}
 
 		$query = Executor::doit($sql);
