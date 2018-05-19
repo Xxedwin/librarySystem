@@ -64,13 +64,15 @@ class BookData {
 	public static function getLike($q){
 		//$sql = "select * from ".self::$tablename." where isbn like '%$q%' or title like '$q%'";
 		//busqueda del libro segun la condicion: por la primera letra || este vacio || busque por titulo o isbn
-		if (strlen($q)==1) {
-			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '$q%'";
-		}elseif ($q=="") {
-			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id";
+		if (is_int($q)) {
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where category_id=$q";
 		}
-		else{
-			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '%$q%' or keywords like '%$q%' or category_id like '%$q%'";
+		elseif (strlen($q)==1) {
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '$q%'";
+		}elseif ($q=="allTheBooks") {
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id";
+		}elseif ($q) {
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '%$q%' or keywords like '%$q%' ";
 		}
 
 		$query = Executor::doit($sql);
