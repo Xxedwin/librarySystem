@@ -22,9 +22,8 @@ $books = BookData::getAll();
 if(count($products)>0){
 	?>
 
-<div class="" style="width: 100%;">
-	<h3 style="    text-align: left;
-    width: 25%;" >Resultados de la Busqueda</h3>		
+<div style="width: 100%;">
+	<h3 style=" text-align: left;width: 25%;" >Resultados de la Busqueda</h3>		
 </div>
 <table class="table table-bordered table-hover">
 	<thead>
