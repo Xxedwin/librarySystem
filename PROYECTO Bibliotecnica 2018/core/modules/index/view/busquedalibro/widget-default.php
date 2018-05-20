@@ -5,18 +5,12 @@ $categories = CategoryData::getAll();
 <style type="text/css">
 	  #wrapper {
 		padding-left: 25px;
-	  }
-	  #show_search_results{
-	  	top: 30px;
-	  }
+	  }	  
 	  .allSearch{
 	  	margin-right: -80px;
 	  }
 	  .search{
 	  	margin-left: -15px;
-	  }
-	  .titleResult{	  	
-	  	width: 25%;
 	  }	  
 	  @media (max-width: 1250px) {
 	    .allSearch{
@@ -24,16 +18,10 @@ $categories = CategoryData::getAll();
 	    }
 	    .search{
 	    	margin-left: 0px;
-	    }
-	    .titleResult{	  	
-	    	width: 80%;
-	    }	  
+	    }	    
 	    .searchGeneral{
 	    	margin-left: -15px;
-	    }
-	    #show_search_results{
-	    	top: 10px;
-	    }
+	    }	    
 	  }
 </style>
 <div class="row">
@@ -84,7 +72,7 @@ $categories = CategoryData::getAll();
 	</div>
 
 
-<div class="col-md-12" id="show_search_results"></div>
+<div class="col-md-11" id="show_search_results"></div>
 
 <script>
 //jQuery.noConflict();
