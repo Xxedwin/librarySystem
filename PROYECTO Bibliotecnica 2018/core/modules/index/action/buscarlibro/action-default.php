@@ -22,9 +22,9 @@ $books = BookData::getAll();
 if(count($products)>0){
 	?>
 
-<div style="width: 100%;">
-	<h3 style=" text-align: left;width: 25%;" >Resultados de la Busqueda</h3>		
-</div>
+
+<h3 class="titleResult">Resultados de la Busqueda</h3>		
+
 <table class="table table-bordered table-hover">
 	<thead>
 		<th>ISBN</th>
@@ -41,7 +41,7 @@ $products_in_cero=0;
 	?>
 		
 	<tr>
-		<td style="width:80px;"><?php echo $product->isbn; ?></td>
+		<td><?php echo $product->isbn; ?></td>
 		<td><?php echo $product->title; ?></td>
 		<td><?php echo $product->institucion; ?></td>
 		<td><?php echo $product->name; ?> <?php echo $product->lastname; ?></td>
