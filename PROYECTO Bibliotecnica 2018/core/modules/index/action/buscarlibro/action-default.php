@@ -18,10 +18,9 @@
 		$products = BookData::getLike($all);		
 		
 	}	
-$books = BookData::getAll();
+
 if(count($products)>0){
 	?>
-
 
 <h3>Resultados de la Busqueda</h3>		
 
@@ -31,13 +30,14 @@ if(count($products)>0){
 		<th>Titulo</th>
 		<th>Institución</th>
 		<th>Autor</th>
-		<!-- <th>Ejemplares</th> -->
+		<th>Ejemplares</th>
 		<th>Disponibles</th>
 		<th>Detalle</th>
 	</thead>
 	<?php
 $products_in_cero=0;
 	 foreach($products as $product):
+	 	$id=$product->id;
 	?>
 		
 	<tr>
@@ -45,66 +45,66 @@ $products_in_cero=0;
 		<td><?php echo $product->title; ?></td>
 		<td><?php echo $product->institucion; ?></td>
 		<td><?php echo $product->name; ?> <?php echo $product->lastname; ?></td>
-		<!-- <td><?php echo ItemData::countByBookId($product->id)->c; ?></td> -->
-		<td><?php echo ItemData::countAvaiableByBookId($product->id)->c; ?></td>
-		<td><button type="button" class="btn btn-link btn-detalle" value="1" data-toggle="modal" data-target="#myModal">Ver</button></td>
+		<td><?php echo ItemData::countByBookId($product->id)->c; ?></td> 
+		<td><?php echo ItemData::countAvaiableByBookId($product->id)->c; ?></td>		
+		<td>
+		    <a href='#' data-toggle="modal" data-target="#myModal" <?php echo "onClick=\"idBook('./?action=idBook','$id')\"" ?>><i class='fa fa-eye'></i>Ver</a>
+		</td>		
 	</tr>
 	
 	<?php endforeach;?>
+
 </table>
-	
+
 	<div class="modal  fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header text-blue">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span></button>
-                    <h4 class="modal-title">DESCRIPCION DEL LIBRO</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <!-- <div class="col-sm-4">
-                            <img src="" alt="" class="imagen img-responsive">
-                        </div> -->
-                        <div class="col-sm-8">
-                        	<table class="table table-bordered table-hover">
-	                        	<thead>
-	                        	<th>ISBN</th>
-	                        	<th>Titulo</th>
-	                        	<th>Subtitulo</th>
-	                        	<th>Institucion</th>
-	                        	<th>Ejemplares</th>
-	                        	<th>Disponibles</th>
-	                        	<th>Tema</th>	                        	
-	                        	</thead>
-	                        	<?php	                        		                        		
-		                        	foreach($books as $user){
-		                        		$category  = $user->getCategory();
-		                        		?>		                        		
-		                        		<tr>
-		                        		<td><?php echo $user->isbn; ?></td>
-		                        		<td><?php echo $user->title; ?></td>
-		                        		<td><?php echo $user->subtitle; ?></td>
-		                        		<td><?php echo $user->institucion; ?></td>
-		                        		<td><?php echo ItemData::countByBookId($user->id)->c; ?></td>
-		                        		<td><?php echo ItemData::countAvaiableByBookId($user->id)->c; ?></td>
-		                        		<td><?php if($category!=null){ echo $category->name; }  ?></td>
-		                        		</tr> 
-		                        		<?php
-		                        	}
-	                        	?>
-                        	</table>	                       	                            
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        <!-- /.modal-content -->
-        </div>
-      <!-- /.modal-dialog -->
-    </div>
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header text-blue">
+	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	                    <span aria-hidden="true">×</span></button>
+	                    <h4 class="modal-title">DESCRIPCION DEL LIBRO</h4>
+	                </div>
+	                <div class="modal-body">
+	                    <div class="row">
+	                        <div class="col-sm-4">
+	                            <!-- <img src="" alt="" class="imagen img-responsive"> -->
+	                        </div>
+	                        <div class="col-sm-8" id="characteristicsBook">	                              
+	                        </div>
+	                    </div>
+	                </div>
+	                <div class="modal-footer text-center">
+	                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+	                </div>
+	            </div>
+	        <!-- /.modal-content -->
+	        </div>
+	      <!-- /.modal-dialog -->
+	    </div>
+
+	    <script type="text/javascript">    	
+	    	
+	    	idBook = function(jRuta,jid_book)
+	    	{
+
+	    	     var parametros = {
+	    	         "id" : jid_book
+	    	     };
+	    	     
+	    	     $.ajax({
+	    	           data:  parametros,
+	    	           type: "POST",
+	    	           url: jRuta,
+	    	            beforeSend: function () {
+	    	            },
+	    	            success: function(data)
+	    	            {
+	    	            	$("#characteristicsBook").html(data);
+	    	            }
+	    	     });
+
+	    	}
+	    </script>
 
 	<?php
 }else{

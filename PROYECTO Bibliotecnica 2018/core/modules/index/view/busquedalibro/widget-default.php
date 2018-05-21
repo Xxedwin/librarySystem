@@ -34,13 +34,13 @@ $categories = CategoryData::getAll();
 			<div class="row allSearch">
 				<div class="col-md-6 search">
 					<input type="hidden" name="view" value="sell">
-					<input type="text" id="product_code" name="product" placeholder="Ver todos los libros" class="form-control">
+					<input type="text" id="product_code" name="product" placeholder="" class="form-control">
 				</div>
 
 				<div class="col-md-4">			    
 				    <div class="col-lg-15">
 						<select name="category_id" id="category_id" class="form-control">
-						<option value="">SELECCIONE EL TEMA</option>
+						<option value="">Seleccione el tema</option>
 						  <?php foreach($categories as $p):?>
 						    <option value="<?php echo $p->id; ?>"><?php echo $p->name; ?></option>
 						  <?php endforeach; ?>
