@@ -37,7 +37,7 @@ if($go){
 print "<script>window.location='index.php?view=rents';</script>";
 }else{
 print "<script>alert('Rango de fecha invalido!');</script>";
-print "<script>window.location='index.php?view=rent';</script>";
+print "<script>window.location='index.php?view=home';</script>";
 }
 
 

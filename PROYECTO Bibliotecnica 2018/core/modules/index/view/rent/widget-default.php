@@ -49,7 +49,7 @@ $total = 0;
     <div class="col-lg-3">
     <label class="control-label">Cliente</label>
 <select name="client_id" id="client_id" required class="form-control">
-<option value="">-- SELECCIONE --</option>
+<option value="">-- Seleccione --</option>
   <?php foreach(ClientData::getAll() as $p):?>
     <option value="<?php echo $p->id; ?>"><?php echo $p->name." ".$p->lastname; ?></option>
   <?php endforeach; ?>
@@ -70,8 +70,8 @@ $total = 0;
     </div>
     <div class="col-lg-1">
     <label class="control-label"><br></label>
-    <button type="reset" onclick="clear();" class="btn btn-danger btn-block"><i class="fa fa-trash"></i>Limpiar</button>    
-    </div>
+    <a href="./?action=clearCart" class="btn btn-danger btn-block"><i class="fa fa-trash"></i></a>
+    
   </div>
 
 </form>
@@ -92,7 +92,8 @@ $item = ItemData::getById($p["item_id"]);
 	<td ><?php echo $item->code; ?></td>
 	<td ><?php echo $book->title; ?></td>
 	<td style="width:30px;">
-	<a href="./?view=home" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
+	<!-- <a href="./?view=home" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a> -->
+	<a href="index.php?view=clearCart&book_id=<?php echo $book->id; ?>&item_id=<?php echo $item->id; ?>" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-remove"></i> Cancelar</a>
 	</td>
 </tr>
 

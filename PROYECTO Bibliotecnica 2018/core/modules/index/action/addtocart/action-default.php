@@ -47,13 +47,13 @@ if($found==false){
 //	print_r($cart);
 	$_SESSION["cart"] = $cart;
 }else{
-/* print "<script>alert('El ejemplar ya esta agregado en la lista!');</script>";
-*/
+ print "<script>alert('El ejemplar ya esta agregado en la lista!');</script>";
+
 }
 
 }
 }
- print "<script>window.location='index.php?view=rent';</script>";
+ print "<script>window.location='index.php?view=home';</script>";
 // unset($_SESSION["cart"]);
 
 ?>
