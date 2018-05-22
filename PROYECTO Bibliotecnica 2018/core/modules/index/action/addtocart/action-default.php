@@ -31,7 +31,7 @@ $can = true;
 if($can==true){
 foreach($cart as $c){
 	if($c["book_id"]==$_POST["book_id"]){
-		echo "found";
+		/*echo "found";*/
 		$found=true;
 		break;
 	}
@@ -47,8 +47,8 @@ if($found==false){
 //	print_r($cart);
 	$_SESSION["cart"] = $cart;
 }else{
- print "<script>alert('El ejemplar ya esta agregado en la lista!');</script>";
-
+/* print "<script>alert('El ejemplar ya esta agregado en la lista!');</script>";
+*/
 }
 
 }

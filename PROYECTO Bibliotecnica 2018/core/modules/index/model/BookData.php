@@ -32,7 +32,7 @@ class BookData {
 
 // partiendo de que ya tenemos creado un objecto BookData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set title=\"$this->title\",subtitle=\"$this->subtitle\",isbn=\"$this->isbn\",description=\"$this->description\",locationShelf=\"$this->locationShelf\",keywords=\"$this->keywords\",n_pag=\"$this->n_pag\",year=\"$this->year\",category_id=$this->category_id,editorial_id=$this->editorial_id,author_id=$this->author_id where id=$this->id";
+		$sql = "update ".self::$tablename." set title=\"$this->title\",subtitle=\"$this->subtitle\",institucion=\"$this->institucion\",isbn=\"$this->isbn\",description=\"$this->description\",locationShelf=\"$this->locationShelf\",keywords=\"$this->keywords\",n_pag=\"$this->n_pag\",year=\"$this->year\",category_id=$this->category_id,editorial_id=$this->editorial_id,author_id=$this->author_id where id=$this->id";
 		Executor::doit($sql);
 	}
 
@@ -65,14 +65,14 @@ class BookData {
 		//$sql = "select * from ".self::$tablename." where isbn like '%$q%' or title like '$q%'";
 		//busqueda del libro segun la condicion: por la primera letra || este vacio || busque por titulo o isbn
 		if (is_int($q)) {
-			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where category_id=$q";
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where category_id=$q order by title asc";
 		}
 		elseif (strlen($q)==1) {
 			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '$q%'";
 		}elseif ($q=="allTheBooks") {
-			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id";
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,description,file,image,year,n_pag,author_id,editorial_id,category_id,name,lastname FROM `book` inner join `author` on book.author_id=author.id order by title asc";
 		}elseif ($q) {
-			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '%$q%' or keywords like '%$q%' ";
+			$sql = "SELECT book.id,isbn,title,subtitle,institucion,name,lastname FROM `book` inner join `author` on book.author_id=author.id where isbn like '%$q%' or title like '%$q%' or keywords like '%$q%' order by title asc";
 		}
 
 		$query = Executor::doit($sql);

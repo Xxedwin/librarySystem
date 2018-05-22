@@ -54,7 +54,7 @@
           </button>
           <div class="conteinerHeader">
             <div class="conteinerTitle">
-              <a class="navbar-brand" href="./">PROYECTO: Bibliotécnica <sup><small><span class="label label-info">2018</span></small></sup> </a>                
+              <a class="navbar-brand" href="">PROYECTO: Bibliotécnica <sup><small><span class="label label-info">2018</span></small></sup> </a>                
               <a  id='hideSesion' class="navbar-brand" href="index.php?view=login">Iniciar Sesion<sup></a>              
             </div>
           </div>

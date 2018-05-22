@@ -3,7 +3,7 @@
 ?>
 <div class="row">
 	<div class="col-md-12">
-	<h1>Buscar Libro</h1>
+	<h1>Buscar libro para prestar</h1>
 	<p><b>Buscar libro por título o por Código/ISBN:</b></p>
 		<form id="searchp">
 		<div class="row">
@@ -33,3 +33,26 @@ $(document).ready(function(){
 	});
 	});
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

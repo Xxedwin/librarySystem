@@ -62,7 +62,7 @@ $products_in_cero=0;
 	                <div class="modal-header text-blue">
 	                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	                    <span aria-hidden="true">×</span></button>
-	                    <h4 class="modal-title">DESCRIPCION DEL LIBRO</h4>
+	                    <h4 class="modal-title">Descripcion del libro</h4>
 	                </div>
 	                <div class="modal-body">
 	                    <div class="row">

@@ -29,6 +29,12 @@ $editorials = EditorialData::getAll();
     </div>
   </div>
   <div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Institucion</label>
+    <div class="col-lg-10">
+      <input type="text" name="institucion" class="form-control" value="<?php echo $book->institucion; ?>" id="inputEmail1" placeholder="Institucion">
+    </div>
+  </div>
+  <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Descripcion</label>
     <div class="col-lg-10">
     <textarea class="form-control" name="description" placeholder="Descripcion"><?php echo $book->description; ?></textarea>

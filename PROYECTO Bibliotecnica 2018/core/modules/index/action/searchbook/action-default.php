@@ -32,7 +32,7 @@ $products_in_cero=0;
 	<?php endforeach; ?>
 </select>
       <span class="input-group-btn">
-		<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-plus-sign"></i> Agregar</button>
+		<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon glyphicon-minus"></i> Prestar</button>
       </span>
     </div>
 

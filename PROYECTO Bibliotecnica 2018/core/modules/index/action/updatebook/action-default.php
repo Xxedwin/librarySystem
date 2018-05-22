@@ -5,6 +5,7 @@ $r = BookData::getById($_POST["id"]);
 $r->title = $_POST["title"];
 $r->subtitle = $_POST["subtitle"];
 $r->description = $_POST["description"];
+$r->institucion = $_POST["institucion"];
 $r->locationShelf = $_POST["locationShelf"];
 $r->keywords = $_POST["keywords"];
 $r->isbn = $_POST["isbn"];
