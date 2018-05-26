@@ -3,8 +3,7 @@
 * Modificado por y para: BiblioTécnica N°3 
 * Modelo de base de datos
 **/
-create database library2;
-use library2; 
+use library22; 
 
 create table user (
 	id int not null auto_increment primary key,

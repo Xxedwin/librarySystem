@@ -22,8 +22,7 @@
 if(count($products)>0){
 	?>
 
-<h3>Resultados de la Busqueda</h3>		
-
+<h3>Resultados de la Busqueda</h3>	
 <table class="table table-bordered table-hover">
 	<thead>
 		<th>ISBN</th>
