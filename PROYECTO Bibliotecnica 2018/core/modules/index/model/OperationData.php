@@ -15,8 +15,8 @@ class OperationData {
 	public function getClient(){ return ClientData::getById($this->client_id); }
 
 	public function add(){
-		$sql = "insert into ".self::$tablename." (item_id,client_id,start_at,finish_at,user_id) ";
-		$sql .= "value (\"$this->item_id\",\"$this->client_id\",\"$this->start_at\",\"$this->finish_at\",\"$this->user_id\")";
+		$sql = "insert into ".self::$tablename." (item_id,client_id,start_at,finish_at,user_id,status_id) ";
+		$sql .= "value (\"$this->item_id\",\"$this->client_id\",\"$this->start_at\",\"$this->finish_at\",\"$this->user_id\",1)";
 		return Executor::doit($sql);
 	}
 
@@ -36,10 +36,17 @@ class OperationData {
 	}
 
 	public function finalize(){
-		$sql = "update ".self::$tablename." set returned_at=NOW() where id=$this->id";
+		$sql = "update ".self::$tablename." set returned_at=NOW(), status_id=3 where id=$this->id";
 		Executor::doit($sql);
 	}
-
+	public function defeated(){
+		$sql = "update ".self::$tablename." set status_id=2 where id=$this->id";
+		Executor::doit($sql);
+	}
+	public function finalizeDefeated(){
+		$sql = "update ".self::$tablename." set returned_at=NOW(), status_id=4 where id=$this->id";
+		Executor::doit($sql);
+	}
 	public static function getById($id){
 		$sql = "select * from ".self::$tablename." where id=$id";
 		$query = Executor::doit($sql);
@@ -56,10 +63,13 @@ class OperationData {
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new OperationData());
 	}
+	public static function getByRange($start,$finish,$status_id){
+		if ($status_id==1 || $status_id==2) {
+			$sql = "select * from ".self::$tablename." where status_id=\"$status_id\" and returned_at is NULL ";
+		}else{
+			$sql = "select * from ".self::$tablename." where returned_at>=\"$start\" and returned_at<=\"$finish\" and status_id=\"$status_id\" and returned_at is not NULL ";			
+		}
 
-
-	public static function getByRange($start,$finish){
-		$sql = "select * from ".self::$tablename." where returned_at>=\"$start\" and returned_at<=\"$finish\" and returned_at is not NULL ";
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new OperationData());
 	}

@@ -146,15 +146,13 @@ $item = ItemData::getById($p["item_id"]);
 <br><br><br><br><br>
 <?php endif; ?>
 
-<script type="text/javascript">
-	function clear(){		
-		
+<!-- <script type="text/javascript">
+	function clear(){				
 		document.getElementById("client_id").value = "";
 		document.getElementById("start_at").value = "";
-		document.getElementById("finish_at").value = "";
-		
+		document.getElementById("finish_at").value = "";		
 	}	
-</script>
+</script> -->
 
 
 

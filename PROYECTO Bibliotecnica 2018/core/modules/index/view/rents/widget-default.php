@@ -45,6 +45,7 @@ if(count($products)>0){
 		<th>Fin</th>
 		<th></th>
 		<th></th>
+		<th>Estado</th>
 	</thead>
 	<?php foreach($products as $sell):
 $item = $sell->getItem();
@@ -69,6 +70,18 @@ $client = $sell->getClient();
 	<?php endif;?>
 		</td>
 		<td style="width:30px;"><a href="index.php?action=deloperation&id=<?php echo $sell->id; ?>" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></a></td>
+
+		<?php if ($sell->finish_at<date("Y-m-d") ): ?>		    
+			<td style="width:30px;"><a disabled class="btn btn-xs btn-danger">Vencido</a></td>		    
+			<?php 
+				$operation = OperationData::getById($sell->id);			
+				$operation->defeated();	
+			 ?>			
+		<?php else: ?>		    
+		    <td style="width:30px;"><a disabled class="btn btn-xs btn-success">Vigente</a></td>
+		<?php endif;?>
+
+
 	</tr>
 <?php endforeach; ?>
 </table>
