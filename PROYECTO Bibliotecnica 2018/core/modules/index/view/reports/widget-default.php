@@ -53,7 +53,11 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
 			<th>Ejemplar</th>
 			<th>Titulo</th>
 			<th>Cliente</th>
-			<th>Fecha</th>
+			<?php if ($_GET["status_id"]!=1): ?>
+				<?php if ($_GET["status_id"]!=2): ?>
+					<th>Fecha de Entrega</th>		
+				<?php endif ?>				
+			<?php endif ?>			
 			</thead>
 			<?php
 			$total = 0;
@@ -66,7 +70,11 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
 				<td><?php echo $item->code; ?></td>
 				<td><?php echo $book->title; ?></td>
 				<td><?php echo $client->name." ".$client->lastname; ?></td>
-				<td><?php echo $user->returned_at; ?></td>
+				<?php if ($_GET["status_id"]!=1): ?>
+					<?php if ($_GET["status_id"]!=2): ?>
+						<td><?php echo $user->returned_at; ?></td>					
+					<?php endif ?>						
+				<?php endif ?>					
 				</tr>
 				<?php
 

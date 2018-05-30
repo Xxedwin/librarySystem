@@ -65,11 +65,10 @@ class OperationData {
 	}
 	public static function getByRange($start,$finish,$status_id){
 		if ($status_id==1 || $status_id==2) {
-			$sql = "select * from ".self::$tablename." where status_id=\"$status_id\" and returned_at is NULL ";
+			$sql = "select * from ".self::$tablename." where start_at<=\"$start\" or finish_at<=\"$finish\" and status_id=\"$status_id\" and returned_at is NULL ";
 		}else{
 			$sql = "select * from ".self::$tablename." where returned_at>=\"$start\" and returned_at<=\"$finish\" and status_id=\"$status_id\" and returned_at is not NULL ";			
 		}
-
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new OperationData());
 	}
