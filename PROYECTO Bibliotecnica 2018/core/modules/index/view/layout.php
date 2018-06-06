@@ -152,6 +152,9 @@ if(Session::getUID()!=""){
 
 <script src="res/bootstrap3/js/bootstrap.min.js"></script>
 <script src="res/bootstrap-tagsinput.js"></script>
+<script src="res/highcharts.js"></script>
+<script src="res/exporting.js"></script>
+
 <ul>
   </body>
 </html>

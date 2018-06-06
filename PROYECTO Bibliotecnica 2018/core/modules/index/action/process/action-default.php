@@ -23,6 +23,7 @@ if( $go && isset($_SESSION["cart"])){
 			 $op->finish_at = $_POST["finish_at"];
 			 $op->user_id=$_SESSION["user_id"];
 			$add = $op->add();
+			/*$addConsult = $op->addConsult();*/
 
 			$item = ItemData::getById($c["item_id"]);
 			$item->unavaiable();

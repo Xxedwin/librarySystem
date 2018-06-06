@@ -1,6 +1,7 @@
 <?php
 class OperationData {
 	public static $tablename = "operation";
+	public static $tableConsult = "consult";
 
 
 	public function OperationData(){
@@ -19,6 +20,12 @@ class OperationData {
 		$sql .= "value (\"$this->item_id\",\"$this->client_id\",\"$this->start_at\",\"$this->finish_at\",\"$this->user_id\",1)";
 		return Executor::doit($sql);
 	}
+	//register to the table consult operation
+/*	public function addConsult(){
+		$sql = "insert into ".self::$tableConsult." (register_at,status_id) ";
+		$sql .= "value (\"$this->start_at\",1)";
+		return Executor::doit($sql);
+	}*/
 
 	public static function delById($id){
 		$sql = "delete from ".self::$tablename." where id=$id";
@@ -39,14 +46,22 @@ class OperationData {
 		$sql = "update ".self::$tablename." set returned_at=NOW(), status_id=3 where id=$this->id";
 		Executor::doit($sql);
 	}
+	//delivery time is expired
 	public function defeated(){
 		$sql = "update ".self::$tablename." set status_id=2 where id=$this->id";
 		Executor::doit($sql);
 	}
+	//delivery of the book with delay
 	public function finalizeDefeated(){
 		$sql = "update ".self::$tablename." set returned_at=NOW(), status_id=4 where id=$this->id";
 		Executor::doit($sql);
 	}
+	//register to the table consult operation
+/*	public function finalizeConsult(){
+		$sql = "insert into ".self::$tableConsult." (register_at,status_id) ";
+		$sql .= "value (NOW(),3)";
+		return Executor::doit($sql);
+	}*/
 	public static function getById($id){
 		$sql = "select * from ".self::$tablename." where id=$id";
 		$query = Executor::doit($sql);
@@ -64,14 +79,25 @@ class OperationData {
 		return Model::many($query[0],new OperationData());
 	}
 	public static function getByRange($start,$finish,$status_id){
-		if ($status_id==1 || $status_id==2) {
-			$sql = "select * from ".self::$tablename." where start_at<=\"$start\" or finish_at<=\"$finish\" and status_id=\"$status_id\" and returned_at is NULL ";
+		if ($status_id==1) {
+			$sql = "select * from ".self::$tablename." where start_at>=\"$start\" and finish_at<=\"$finish\"";
 		}else{
-			$sql = "select * from ".self::$tablename." where returned_at>=\"$start\" and returned_at<=\"$finish\" and status_id=\"$status_id\" and returned_at is not NULL ";			
+			$sql = "select * from ".self::$tablename." where returned_at>=\"$start\" and returned_at<=\"$finish\" and returned_at is not NULL ";			
+		}		
+		$query = Executor::doit($sql);
+		return Model::many($query[0],new OperationData());
+	}
+	//count the quantity registers
+	public static function countRegister($start,$finish,$status_id){
+		if ($status_id==1) {
+			$sql = "select count(start_at) as quantity, start_at from ".self::$tablename." where start_at>=\"$start\" and start_at<=\"$finish\" group by start_at"; 	
+		}else{
+			$sql = "select count(returned_at) as quantity, returned_at as start_at from ".self::$tablename." where returned_at>=\"$start\" and returned_at<=\"$finish\" and returned_at is not NULL group by returned_at"; 	
 		}
 		$query = Executor::doit($sql);
 		return Model::many($query[0],new OperationData());
 	}
+
 
 	public static function getRents(){
 		$sql = "select * from ".self::$tablename." where returned_at is NULL";

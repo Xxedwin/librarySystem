@@ -11,13 +11,17 @@
     <div class="col-lg-3">
 		<div class="input-group">
 		  <span class="input-group-addon">Desde</span>
-		  <input required type="date" name="start_at" value="<?php if(isset($_GET["start_at"]) && $_GET["start_at"]!=""){ echo $_GET["start_at"]; } ?>" class="form-control" placeholder="Palabra clave">
+		  <input required type="date" name="start_at" value="<?php if(isset($_GET["start_at"]) && $_GET["start_at"]!=""){ echo $_GET["start_at"]; }else{ echo $date = date("Y-m-d");} ?>" class="form-control" placeholder="Palabra clave">
 		</div>
     </div>
     <div class="col-lg-3">
 		<div class="input-group">
 		  <span class="input-group-addon">Hasta</span>
-		  <input required type="date" name="finish_at" value="<?php if(isset($_GET["finish_at"]) && $_GET["finish_at"]!=""){ echo $_GET["finish_at"]; } ?>" class="form-control" placeholder="Palabra clave">
+		  <input required type="date" name="finish_at" value="<?php if(isset($_GET["finish_at"]) && $_GET["finish_at"]!=""){ echo $_GET["finish_at"]; }else{
+		  	$newDate = strtotime ( '+1 month' , strtotime ( $date ) ) ;
+		  	$newDate = date ( 'Y-m-d' , $newDate );		  	 
+		  	echo $newDate;
+		  } ?>" class="form-control" placeholder="Palabra clave">
 		</div>
     </div>
     <div class="col-md-3">			    
@@ -37,9 +41,16 @@
 
   </div>
 </form>
+
+<?php if(isset($_GET["finish_at"]) && $_GET["finish_at"]!=""): ?>
+    <div id="container"></div>
+<?php endif ?>
+
 <?php
 if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]) && $_GET["finish_at"]!="" && isset($_GET["status_id"]) && $_GET["status_id"]!=""){
 	$users = OperationData::getByRange($_GET["start_at"],$_GET["finish_at"],$_GET["status_id"]);
+    $registers = OperationData::countRegister($_GET["start_at"],$_GET["finish_at"],$_GET["status_id"]);
+    
 		if(count($users)>0){
 			// si hay usuarios
 			$_SESSION["report_data"] = $users;
@@ -53,11 +64,7 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
 			<th>Ejemplar</th>
 			<th>Titulo</th>
 			<th>Cliente</th>
-			<?php if ($_GET["status_id"]!=1): ?>
-				<?php if ($_GET["status_id"]!=2): ?>
-					<th>Fecha de Entrega</th>		
-				<?php endif ?>				
-			<?php endif ?>			
+			<th>Fecha de Entrega</th>		
 			</thead>
 			<?php
 			$total = 0;
@@ -70,11 +77,7 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
 				<td><?php echo $item->code; ?></td>
 				<td><?php echo $book->title; ?></td>
 				<td><?php echo $client->name." ".$client->lastname; ?></td>
-				<?php if ($_GET["status_id"]!=1): ?>
-					<?php if ($_GET["status_id"]!=2): ?>
-						<td><?php echo $user->returned_at; ?></td>					
-					<?php endif ?>						
-				<?php endif ?>					
+				<td><?php echo $user->returned_at; ?></td>					
 				</tr>
 				<?php
 
@@ -89,9 +92,111 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
 			echo "<p class='alert alert-danger'>Establece un rango de fechas</p>";
 		}
 
-
 		?>
-
 
 	</div>
 </div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#container').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: 'Reporte Estadístico'
+            },
+            xAxis: {
+                title: {
+                    text: 'Días activos del mes'
+                },
+                categories: [
+
+                <?php 
+                foreach($registers as $register){
+                    $day=$register->start_at;
+                    $d=date_create($day);                    
+                    echo date_format($d, 'd');  
+                    echo ',';
+                }   
+                 ?>                
+
+                    ]
+            },
+            yAxis: {
+                title: {
+                    <?php 
+                    if ($_GET["status_id"]==3) {
+                        ?>
+                        text: 'Libros devueltos'
+                        <?php 
+
+                    }else{
+                        ?>
+                        text: 'Libros prestados'
+                        <?php 
+                    }
+                     ?>
+                    
+                },
+                min: 0
+            },
+            tooltip: {
+                <?php 
+                if ($_GET["status_id"]==3) {
+                    ?>
+                    formatter: function() {
+                      return 'Libros devueltos: <b>'+ this.y +'</b><br>Dia: <b>'+ this.x +'</b>';
+                    }<?php 
+
+                }else{
+                    ?>
+                    formatter: function() {
+                      return 'Libros prestados: <b>'+ this.y +'</b><br>Dia: <b>'+ this.x +'</b>';
+                    }<?php 
+                }
+                 ?>
+            },
+            plotOptions: {
+                spline: {
+                    marker: {
+                        radius: 4,
+                        lineColor: '#666666',
+                        lineWidth: 1
+                    }
+                }
+            },
+            series: [{
+                showInLegend: false,
+
+                <?php 
+                if ($_GET["status_id"]==3) {
+                    ?>
+                    name: 'Libros devueltos',
+                    <?php 
+
+                }else{
+                    ?>
+                    name: 'Libros prestados',
+                    <?php 
+                }
+                 ?>
+                
+                marker: {
+                    symbol: 'diamond'
+                },
+                data: [ 
+
+                <?php 
+                foreach($registers as $register){
+                    echo $register->quantity;
+                    echo ',';
+                }                                    
+                 ?>
+
+                ]
+
+            }]
+        });
+    });
+</script>
