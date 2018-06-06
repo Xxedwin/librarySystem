@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-05-2018 a las 20:53:31
+-- Tiempo de generación: 06-06-2018 a las 05:29:05
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -76,7 +76,10 @@ INSERT INTO `book` (`id`, `isbn`, `title`, `subtitle`, `institucion`, `descripti
 (6, '00', '00', '00', '00', '00', NULL, NULL, 2018, 2, 1, 1, 2, 'aa ,bb', '00'),
 (7, 's', 'ss', 'ss', 's', 's', NULL, NULL, 0, 0, 1, 1, 1, 's', 's'),
 (11, 'a', 'a', 'a', 'a', 'a', NULL, NULL, 0, 0, 1, 1, 1, 'a', 'a'),
-(12, 'b', 'b', 'b', 'b', 'b', NULL, NULL, 0, 0, 1, 1, 2, 'b', 'b');
+(12, 'b', 'b', 'b', 'b', 'b', NULL, NULL, 0, 0, 1, 1, 2, 'b', 'b'),
+(13, '444', 'dragon lobo', 'rr', 'rr', 'r', NULL, NULL, 2018, 30, 1, 1, 1, 'pelota medicina,palabra ,margen', ''),
+(14, 'a', 'a', 'a', 'a', 'a', NULL, NULL, 0, 0, 1, 1, 1, 'a', 'a'),
+(15, 'b', 'b', 'b', 'b', 'b', NULL, NULL, 0, 0, 1, 1, 2, 'b', 'b');
 
 -- --------------------------------------------------------
 
@@ -157,10 +160,10 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id`, `code`, `status_id`, `book_id`) VALUES
-(10, '4444', 2, 3),
-(11, '4444', 1, 3),
+(10, '4444', 1, 3),
+(11, '4444', 2, 3),
 (12, '33', 2, 4),
-(13, '33', 1, 5),
+(13, '33', 2, 5),
 (14, '444', 1, 6);
 
 -- --------------------------------------------------------
@@ -186,13 +189,11 @@ CREATE TABLE `operation` (
 --
 
 INSERT INTO `operation` (`id`, `item_id`, `client_id`, `start_at`, `finish_at`, `returned_at`, `user_id`, `receptor_id`, `status_id`) VALUES
-(15, 11, 1, '2018-05-26', '2018-05-29', '2018-05-29', 1, NULL, 3),
-(25, 14, 1, '2018-05-03', '2018-05-23', '2018-05-29', 1, NULL, 4),
-(26, 13, 1, '2018-05-02', '2018-06-01', '2018-05-29', 1, NULL, 3),
-(27, 10, 1, '2018-05-09', '2018-05-27', '2018-05-29', 1, NULL, 4),
-(28, 14, 1, '2018-05-09', '2018-05-30', '2018-05-29', 1, NULL, 3),
-(29, 10, 1, '2018-05-02', '2018-05-18', '2018-05-29', 1, NULL, 4),
-(30, 10, 1, '2018-05-03', '2018-06-01', NULL, 1, NULL, 1);
+(35, 14, 1, '2018-06-07', '2018-06-23', NULL, 1, NULL, 1),
+(36, 14, 1, '2018-06-04', '2018-06-22', '2018-06-05', 1, NULL, 3),
+(37, 10, 1, '2018-06-21', '2018-06-30', NULL, 1, NULL, 1),
+(38, 14, 1, '2018-06-04', '2018-06-22', '2018-06-06', 1, NULL, 3),
+(39, 10, 1, '2018-05-03', '2018-06-01', NULL, 1, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -230,10 +231,8 @@ CREATE TABLE `status_operation` (
 --
 
 INSERT INTO `status_operation` (`id`, `name`) VALUES
-(1, 'pendientes'),
-(2, 'vencidos'),
-(3, 'devueltos'),
-(4, 'devueltos con tardanza');
+(1, 'prestamos'),
+(3, 'devoluciones');
 
 -- --------------------------------------------------------
 
@@ -259,7 +258,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `lastname`, `username`, `email`, `password`, `is_active`, `is_admin`, `created_at`) VALUES
 (1, 'Administrador', '', 'admin', '', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', 1, 1, '2018-05-07 20:41:47'),
-(2, 'edwin', 'limachi', 'elimachi', '', '10470c3b4b1fed12c3baac014be15fac67c6e815', 1, 0, '2018-05-07 22:00:35');
+(2, 'edwin', 'limachi', 'elimachi', '', '10470c3b4b1fed12c3baac014be15fac67c6e815', 1, 0, '2018-05-07 22:00:35'),
+(3, 'Administrado', '', 'admin', '', '90b9aa7e25f80cf4f64e990b78a9fc5ebd6cecad', 1, 1, '2018-05-07 20:41:47'),
+(4, 'edwinn', 'limachi', 'elimachi', '', '10470c3b4b1fed12c3baac014be15fac67c6e815', 1, 0, '2018-05-07 22:00:35');
 
 --
 -- Índices para tablas volcadas
@@ -348,7 +349,7 @@ ALTER TABLE `author`
 -- AUTO_INCREMENT de la tabla `book`
 --
 ALTER TABLE `book`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `category`
@@ -378,7 +379,7 @@ ALTER TABLE `item`
 -- AUTO_INCREMENT de la tabla `operation`
 --
 ALTER TABLE `operation`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT de la tabla `status`
@@ -396,7 +397,7 @@ ALTER TABLE `status_operation`
 -- AUTO_INCREMENT de la tabla `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Restricciones para tablas volcadas

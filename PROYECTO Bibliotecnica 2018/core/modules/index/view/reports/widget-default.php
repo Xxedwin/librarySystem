@@ -64,7 +64,19 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
 			<th>Ejemplar</th>
 			<th>Titulo</th>
 			<th>Cliente</th>
-			<th>Fecha de Entrega</th>		
+            <?php 
+            if ($_GET["status_id"]==1) {
+                ?>
+                <th>Fecha de Prestamo</th>                   
+                <?php 
+
+            }else{
+                ?>
+                <th>Fecha de Entrega</th>                        
+                <?php 
+            }
+             ?>
+			
 			</thead>
 			<?php
 			$total = 0;
@@ -77,7 +89,19 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
 				<td><?php echo $item->code; ?></td>
 				<td><?php echo $book->title; ?></td>
 				<td><?php echo $client->name." ".$client->lastname; ?></td>
-				<td><?php echo $user->returned_at; ?></td>					
+                <?php 
+                if ($_GET["status_id"]==1) {
+                    ?>
+                    <td><?php echo $user->start_at; ?></td>                  
+                    <?php 
+
+                }else{
+                    ?>
+                    <td><?php echo $user->returned_at; ?></td>                  
+                    <?php 
+                }
+                 ?>
+				
 				</tr>
 				<?php
 
@@ -103,8 +127,19 @@ if(isset($_GET["start_at"]) && $_GET["start_at"]!="" && isset($_GET["finish_at"]
             chart: {
                 type: 'spline'
             },
-            title: {
-                text: 'Reporte Estadístico'
+            title: {                
+                <?php 
+                if ($_GET["status_id"]==3) {
+                    ?>
+                    text: 'Reporte Estadístico de Devoluciones'
+                    <?php 
+
+                }else{
+                    ?>
+                    text: 'Reporte Estadístico de Préstamos'
+                    <?php 
+                }
+                 ?>
             },
             xAxis: {
                 title: {

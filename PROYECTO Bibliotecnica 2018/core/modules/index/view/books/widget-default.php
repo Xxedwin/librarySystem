@@ -12,17 +12,20 @@ $books = BookData::getAll();
 		if(count($books)>0){
 			// Si hay usuarios
 			?>
-			<table class="table table-bordered table-hover">
+			<table id="example" class="table table-striped table-bordered" style="width:100%">
 			<thead>
-			<th>ISBN</th>
-			<th>Titulo</th>
-			<th>Subtitulo</th>
-			<th>Institucion</th>
-			<th>Ejemplares</th>
-			<th>Disponibles</th>
-			<th>Tema</th>
-			<th></th>
+			  <tr>
+				<th>ISBN</th>
+				<th>Titulo</th>
+				<th>Subtitulo</th>
+				<th>Institucion</th>
+				<th>Ejemplares</th>
+				<th>Disponibles</th>
+				<th>Tema</th>
+				<th></th>
+			  </tr>
 			</thead>
+			<tbody>
 			<?php
 			foreach($books as $user){
 				$category  = $user->getCategory();
@@ -49,6 +52,7 @@ $books = BookData::getAll();
 
 
 				?>
+				</tbody>
 				</table>
 				<?php
 
@@ -62,3 +66,11 @@ $books = BookData::getAll();
 
 	</div>
 </div>
+
+<script type="text/javascript">
+	$('#example').DataTable({
+	  "language": {	    
+	    "url": "res/Spanish.json"
+	  }
+	});
+</script>

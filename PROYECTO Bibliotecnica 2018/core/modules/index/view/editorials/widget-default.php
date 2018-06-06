@@ -12,7 +12,7 @@
 			// si hay usuarios
 			?>
 
-			<table class="table table-bordered table-hover">
+			<table id="example" class="table table-striped table-bordered" style="width:100%">
 			<thead>
 			<th>Nombre</th>
 			<th></th>
@@ -39,3 +39,11 @@
 
 	</div>
 </div>
+
+<script type="text/javascript">
+	$('#example').DataTable({
+	  "language": {	    
+	    "url": "res/Spanish.json"
+	  }
+	});
+</script>

@@ -9,6 +9,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="res/bootstrap3/css/bootstrap.css" rel="stylesheet">
+    <link href="res/bootstrap3/css/dataTables.bootstrap.min.css" rel="stylesheet">
+
     <link href="res/bootstrap-tagsinput.css" rel="stylesheet"/>
     <!-- Add custom CSS here -->
     <link href="res/select2/select2.css" rel="stylesheet">
@@ -17,6 +19,8 @@
     <link href="css/sb-admin.css" rel="stylesheet">    
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">    
     <script src="js/jquery-1.10.2.js"></script>
+    <script src="res/jquery.dataTables.min.js"></script>
+    <script src="res/dataTables.bootstrap.min.js"></script>
 <?php if(isset($_GET["view"]) && $_GET["view"]=="home"):?>
 <link href='res/fullcalendar.min.css' rel='stylesheet' />
 <link href='res/fullcalendar.print.css' rel='stylesheet' media='print' />
