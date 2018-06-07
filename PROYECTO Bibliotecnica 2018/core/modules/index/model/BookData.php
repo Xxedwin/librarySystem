@@ -16,8 +16,8 @@ class BookData {
 	public function getAuthor(){ return $this->author_id!=null? AuthorData::getById($this->author_id) : null ; }
 
 	public function add(){
-		$sql = "insert into book (isbn,title,subtitle,institucion,description,locationShelf,keywords,n_pag,year,category_id,editorial_id,author_id) ";
-		$sql .= "value (\"$this->isbn\",\"$this->title\",\"$this->subtitle\",\"$this->institucion\",\"$this->description\",\"$this->locationShelf\",\"$this->keywords\",\"$this->n_pag\",\"$this->year\",$this->category_id,$this->editorial_id,$this->author_id)";
+		$sql = "insert into book (isbn,title,subtitle,institucion,description,image,locationShelf,keywords,n_pag,year,category_id,editorial_id,author_id) ";
+		$sql .= "value (\"$this->isbn\",\"$this->title\",\"$this->subtitle\",\"$this->institucion\",\"$this->description\",\"$this->image\",\"$this->locationShelf\",\"$this->keywords\",\"$this->n_pag\",\"$this->year\",$this->category_id,$this->editorial_id,$this->author_id)";
 		return Executor::doit($sql);
 	}
 
@@ -32,7 +32,7 @@ class BookData {
 
 // partiendo de que ya tenemos creado un objecto BookData previamente utilizamos el contexto
 	public function update(){
-		$sql = "update ".self::$tablename." set title=\"$this->title\",subtitle=\"$this->subtitle\",institucion=\"$this->institucion\",isbn=\"$this->isbn\",description=\"$this->description\",locationShelf=\"$this->locationShelf\",keywords=\"$this->keywords\",n_pag=\"$this->n_pag\",year=\"$this->year\",category_id=$this->category_id,editorial_id=$this->editorial_id,author_id=$this->author_id where id=$this->id";
+		$sql = "update ".self::$tablename." set title=\"$this->title\",subtitle=\"$this->subtitle\",institucion=\"$this->institucion\",isbn=\"$this->isbn\",description=\"$this->description\",image=\"$this->image\",locationShelf=\"$this->locationShelf\",keywords=\"$this->keywords\",n_pag=\"$this->n_pag\",year=\"$this->year\",category_id=$this->category_id,editorial_id=$this->editorial_id,author_id=$this->author_id where id=$this->id";
 		Executor::doit($sql);
 	}
 

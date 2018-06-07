@@ -64,12 +64,7 @@ $products_in_cero=0;
 	                    <h4 class="modal-title">Descripcion del libro</h4>
 	                </div>
 	                <div class="modal-body">
-	                    <div class="row">
-	                        <div class="col-sm-4">
-	                            <!-- <img src="" alt="" class="imagen img-responsive"> -->
-	                        </div>
-	                        <div class="col-sm-8" id="characteristicsBook">	                              
-	                        </div>
+	                    <div class="row" id="characteristicsBook">
 	                    </div>
 	                </div>
 	                <div class="modal-footer text-center">

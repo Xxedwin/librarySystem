@@ -7,6 +7,20 @@ $r->title = $_POST["title"];
 $r->subtitle = $_POST["subtitle"];
 $r->institucion = $_POST["institucion"];
 $r->description = $_POST["description"];
+
+if (isset($_POST["file"])) {
+	$file= $_FILES["file"];
+	$image= $_FILES["file"]["name"];
+	$type= $_FILES["file"]["type"];
+	$provicionalRoute= $file["tmp_name"];
+	$folder= "uploads/";
+	$src = $folder.$image;
+	copy($provicionalRoute, $src);
+}else{
+	$image='';
+}
+
+$r->image = $image;
 $r->locationShelf = $_POST["locationShelf"];
 $r->keywords = $_POST["keywords"];
 $r->n_pag = $_POST["n_pag"];

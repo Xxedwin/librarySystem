@@ -13,6 +13,14 @@
     $category = CategoryData::getById($idCategory);     
 	
 ?>
+<div class="col-sm-4">
+  <?php if($book->image === ''): ?>    
+    <img src="uploads/default-book.png" alt="" class="imagen img-responsive">
+  <?php else: ?>  
+    <img src="uploads/<?php echo $book->image; ?>" alt="" class="imagen img-responsive">
+  <?php endif; ?>    
+</div>
+<div class="col-sm-8">      
  <dl>
     <dt>ISBN:</dt>
     <dd class="codigo_libro"><?php echo $book->isbn; ?></dd>
@@ -36,7 +44,9 @@
     <dd class="idioma_libro"><?php echo $category->name ?></dd>
     <dt>Ubicacion y Estante:</dt>
     <dd class="idioma_libro"><?php echo $book->locationShelf; ?></dd>
-</dl>
+</dl>                         
+</div>
+
 
 <?php else:			
 ?>

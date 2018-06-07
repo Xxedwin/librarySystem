@@ -9,7 +9,7 @@ $editorials = EditorialData::getAll();
 <div class="row">
 <div class="col-md-12">
 <h1>Nuevo Libro</h1>
-<form class="form-horizontal" role="form" method="post" action="./?action=addbook" id="addbook">
+<form class="form-horizontal" role="form" method="post" action="./?action=addbook" id="addbook" enctype="multipart/form-data">
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">ISBN</label>
     <div class="col-lg-10">
@@ -49,14 +49,13 @@ $editorials = EditorialData::getAll();
   </div>  
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Palabras Claves</label>
-    <div class="col-lg-10">      
+    <div class="col-lg-5">      
       <input type="text" name="keywords" class="form-control" id="inputEmail1" data-role="tagsinput" placeholder="Palabras Claves">
     </div>
-    <!-- <label for="inputEmail1" class="col-lg-1 control-label">Portada</label>
+    <label for="inputEmail1" class="col-lg-1 control-label">Portada</label>
     <div class="col-lg-4">
-      <input type="file" name="image" id="name" class="form-control" id="inputEmail1">
-    </div> -->
-
+      <input type="file" name="file" id="file" class="form-control" id="inputEmail1">
+    </div>
   </div>
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Num. Paginas</label>
@@ -69,8 +68,6 @@ $editorials = EditorialData::getAll();
     </div>
 
   </div>
-
-
 
   <div class="form-group">
     <label for="inputEmail1" class="col-lg-2 control-label">Tema</label>

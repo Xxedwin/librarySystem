@@ -5,6 +5,25 @@ $r = BookData::getById($_POST["id"]);
 $r->title = $_POST["title"];
 $r->subtitle = $_POST["subtitle"];
 $r->description = $_POST["description"];
+
+if ($r->image!='') {
+	$folder= "uploads/";
+	$nameImage=$r->image;
+	unlink($folder.$nameImage);
+}
+
+if (isset($_POST["file"])) {
+	$file= $_FILES["file"];
+	$image= $_FILES["file"]["name"];
+	$type= $_FILES["file"]["type"];
+	$provicionalRoute= $file["tmp_name"];	
+	$src = $folder.$image;
+	copy($provicionalRoute, $src);
+}else{
+	$image='';
+}
+
+$r->image = $image;
 $r->institucion = $_POST["institucion"];
 $r->locationShelf = $_POST["locationShelf"];
 $r->keywords = $_POST["keywords"];
