@@ -8,7 +8,7 @@ $r->subtitle = $_POST["subtitle"];
 $r->institucion = $_POST["institucion"];
 $r->description = $_POST["description"];
 
-if (isset($_POST["file"])) {
+if (isset($_FILES["file"]) && $_FILES["file"]!='') {
 	$file= $_FILES["file"];
 	$image= $_FILES["file"]["name"];
 	$type= $_FILES["file"]["type"];
@@ -30,6 +30,6 @@ $r->editorial_id = $_POST["editorial_id"]!="" ? $_POST["editorial_id"] : "NULL";
 $r->author_id = $_POST["author_id"]!="" ? $_POST["author_id"] : "NULL";
 $r->add();
 }
-//Core::alert("Libro agregado correctamente");
+Core::alert("Libro agregado correctamente");
 Core::redir("./index.php?view=books");
 ?>

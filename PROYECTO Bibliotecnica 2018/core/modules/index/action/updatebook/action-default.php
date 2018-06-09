@@ -6,13 +6,14 @@ $r->title = $_POST["title"];
 $r->subtitle = $_POST["subtitle"];
 $r->description = $_POST["description"];
 
-if ($r->image!='') {
-	$folder= "uploads/";
+$folder= "uploads/";
+
+if ($r->image!='') {	
 	$nameImage=$r->image;
 	unlink($folder.$nameImage);
 }
 
-if (isset($_POST["file"])) {
+if (isset($_FILES["file"]) && $_FILES["file"]!='') {
 	$file= $_FILES["file"];
 	$image= $_FILES["file"]["name"];
 	$type= $_FILES["file"]["type"];

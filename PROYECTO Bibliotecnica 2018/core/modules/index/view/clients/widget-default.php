@@ -41,7 +41,7 @@
 				<td style="width:200px;">
 				<a href="index.php?view=clienthistory&id=<?php echo $user->id;?>" class="btn btn-default btn-xs">Historial</a>
 				<a href="index.php?view=editclient&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
-				<a href="index.php?action=delclient&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
+				<a href="index.php?action=delclient&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs" onclick="return confirm('¿Estas segura que deseas eliminar?');">Eliminar</a>
 				</td>
 				</tr>
 				<?php

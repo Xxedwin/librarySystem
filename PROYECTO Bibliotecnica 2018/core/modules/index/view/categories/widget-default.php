@@ -23,7 +23,7 @@
 				?>
 				<tr>
 				<td><?php echo $user->name; ?></td>
-				<td style="width:130px;"><a href="index.php?view=editcategory&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a> <a href="index.php?action=delcategory&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a></td>
+				<td style="width:130px;"><a href="index.php?view=editcategory&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a> <a href="index.php?action=delcategory&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs" onclick="return confirm('¿Estas segura que deseas eliminar?');">Eliminar</a></td>
 				</tr>
 				<?php
 

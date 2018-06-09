@@ -43,7 +43,7 @@ $books = BookData::getAll();
 				<a href="index.php?view=items&id=<?php echo $user->id;?>" class="btn btn-default btn-xs">Ejemplares</a>
 				<?php if($u->is_admin): ?>
 				<a href="index.php?view=editbook&id=<?php echo $user->id;?>" class="btn btn-warning btn-xs">Editar</a>
-				<a href="index.php?action=delbook&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs">Eliminar</a>
+				<a href="index.php?action=delbook&id=<?php echo $user->id;?>" class="btn btn-danger btn-xs" onclick="return confirm('¿Estas segura que deseas eliminar?');">Eliminar</a>
 				<?php endif; ?>
 				</td>
 				</tr> <?php endif; ?>
